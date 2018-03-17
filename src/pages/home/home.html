@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of datasource.source">
+      <ion-item>
+        {{ item.name }}
+        <button ion-button color="danger" (click)="deleteItem(item.id)">Delete</button>
+      </ion-item>
+      <ion-item-options >
+        <button ion-button (click)="editItem(item)">Edit</button>
+        
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <hr/>
+  <ion-grid>
+    <ion-input ngControl="name" placeholder="name" #name [ngModel]="pastname"></ion-input>
+    <button *ngIf="toggle == false" [style.display]="visible" ion-button (click)="createItem(name)">Add</button>
+    <button *ngIf="toggle == true" [style.display]="visible" ion-button (click)="updateItem(name)">edit</button>
+  </ion-grid>
+</ion-content>
